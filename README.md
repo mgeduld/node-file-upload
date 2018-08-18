@@ -20,11 +20,19 @@ For routehappy!!!
 
 ## API Test
 
-Can be tested in Postman or similar by making a POST request to `localhost:1234/api/v1/upload` and including a `jpg` or `png` file with dimensions between 350x350 and 5000x5000.
+### Upload
+
+Can be tested in Postman or similar by making a `POST` request to `localhost:1234/api/v1/upload` and including a `jpg` or `png` file with dimensions between 350x350 and 5000x5000.
 
 By default, images will be saved to `[your home directory]/images`.
 
 The sever port and the image-storage location can be configured with environmental variables PORT and STORAGE_PATH
+
+### Get Images
+
+Test by making a `GET` request to `localhost:1234/api/v1/`.
+
+NOTE: my assumption here is that we want a list of filenames (e.g. to display in image tags) and not a zip file containing all the actual image files.
 
 ## About
 

@@ -32,12 +32,13 @@ export interface IRequest {
   app?: {
     get: (key: string) => any
   }
-  files: IFilesData
+  files?: IFilesData
 }
 
 export interface IFS {
-  existsSync: (path: string) => boolean
-  mkdirSync: (path: string) => void
+  existsSync?: (path: string) => boolean
+  mkdirSync?: (path: string) => void
+  readdirSync?: (path: string) => string[] | null
 }
 
 export interface IImageSpecs {

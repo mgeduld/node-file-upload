@@ -1,6 +1,8 @@
-import { IRequest, IResponse, IFileDatum } from './interfaces'
+import * as fs from 'fs'
+import { IRequest, IResponse, IFileDatum, IFS } from './interfaces'
 import { getFileData, maybeMakeDir } from './utils'
 import { storeImage } from './storage'
+import { storagePath } from './constants'
 
 export const uploadAPIFactory = (
   maybeMakeDirFn: Function,
@@ -13,3 +15,17 @@ export const uploadAPIFactory = (
 }
 
 export const uploadAPI: any = uploadAPIFactory(maybeMakeDir, storeImage)
+
+export const pathsAPIFactory = (diskUtils: IFS) => (
+  req: IRequest,
+  res: IResponse
+) => {
+  let images = []
+  if (diskUtils.existsSync(storagePath)) {
+    const files = diskUtils.readdirSync(storagePath)
+    images = files || []
+  }
+  res.json({ images })
+}
+
+export const pathsAPI = pathsAPIFactory(fs)
